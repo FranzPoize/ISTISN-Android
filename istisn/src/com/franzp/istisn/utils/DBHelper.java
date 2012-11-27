@@ -23,7 +23,7 @@ public class DBHelper {
 	}
 	
 	public Cursor getQuotes(){
-		String sql = "SELECT * FROM quote";
+		String sql = "SELECT * FROM quote ORDER BY _id DESC";
 		return db.rawQuery(sql, null);
 	}
 	

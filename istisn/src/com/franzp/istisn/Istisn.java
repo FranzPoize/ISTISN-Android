@@ -32,7 +32,7 @@ public class Istisn extends FragmentActivity implements AnimationListener {
     private ViewPager viewPager;
     private static LinearLayout myLayout;
     private static final int STOPSPLASH = 0;
-    private static final int SPLASHTIME = 10000;
+    private static final int SPLASHTIME = 3000;
     private static Istisn context;
     public DBHelper helper;
     
