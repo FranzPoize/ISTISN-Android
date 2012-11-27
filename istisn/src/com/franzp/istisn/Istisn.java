@@ -1,5 +1,6 @@
 package com.franzp.istisn;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.franzp.istisn.fragment.AboutFragment;
@@ -23,7 +26,7 @@ import com.franzp.istisn.fragment.QuotesFragment;
 import com.franzp.istisn.utils.DBHelper;
 import com.viewpagerindicator.TabPageIndicator;
 
-public class Istisn extends FragmentActivity implements AnimationListener {
+public class Istisn extends FragmentActivity {
 
     private ISTISNPagerAdapter pageAdapter;
     private ViewPager viewPager;
@@ -32,6 +35,7 @@ public class Istisn extends FragmentActivity implements AnimationListener {
     private static final int SPLASHTIME = 3000;
     private static Istisn context;
     public DBHelper helper;
+    private ImageView refreshButton;
     
     private Handler splashHandler = new Handler() {
     	@Override
@@ -39,7 +43,6 @@ public class Istisn extends FragmentActivity implements AnimationListener {
     		switch (msg.what) {
     		case STOPSPLASH:
     			Animation anim = AnimationUtils.loadAnimation(context, R.anim.splash_animation);
-    	        anim.setAnimationListener(context);
     	        myLayout.setVisibility(View.VISIBLE);
     	        myLayout.startAnimation(anim);
     			break;
@@ -49,24 +52,12 @@ public class Istisn extends FragmentActivity implements AnimationListener {
     };
     
     @Override
-    public void onAnimationEnd(Animation animation){}
-
-    @Override
-    public void onAnimationRepeat(Animation animation){}
-
-    @Override
-    public void onAnimationStart(Animation animation)
-    {
-    }
-    
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
         context = this;
         setContentView(R.layout.activity_istisn);
         myLayout = (LinearLayout)findViewById(R.id.splashLayout);
-    	
         
         helper = new DBHelper(this);
         
@@ -77,6 +68,20 @@ public class Istisn extends FragmentActivity implements AnimationListener {
 		viewPager.setAdapter(pageAdapter);
 		indicator.setViewPager(viewPager);
 		viewPager.setCurrentItem(0, false);
+		
+		refreshButton = (ImageView)findViewById(R.id.refresh);
+		refreshButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(pageAdapter.quoteFragment != null)
+					try {
+						pageAdapter.quoteFragment.refresh();
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+			}
+		});
 		
 		Message msg = new Message();
 		msg.what = STOPSPLASH;
@@ -96,6 +101,7 @@ public class Istisn extends FragmentActivity implements AnimationListener {
 
 	private static class ISTISNPagerAdapter extends FragmentPagerAdapter {  
 		private List<Fragment> pages;
+		public QuotesFragment quoteFragment;
 		
 		private static String ALL_SUBTITLE = "QUOTES";
 		private static String ABOUT_SUBTITLE = "ABOUT";
@@ -109,7 +115,8 @@ public class Istisn extends FragmentActivity implements AnimationListener {
         public ISTISNPagerAdapter(FragmentManager fm) {  
              super(fm);
              pages = new ArrayList<Fragment>();
-             pages.add(new QuotesFragment());
+             quoteFragment = new QuotesFragment();
+             pages.add(quoteFragment);
              pages.add(new AboutFragment());
         }  
 

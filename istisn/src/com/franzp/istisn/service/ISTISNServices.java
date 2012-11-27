@@ -14,9 +14,9 @@ public class ISTISNServices {
 	private WebService webService;
 	private final static String ALL_METHOD = "/last/all/";
 	private final static String PAGINATED_METHOD = "/last/paginate/";
-	private final static String TOP_DESC_METHOD = "/top/paginate";
-	private final static String FLOP_DESC_METHOD = "/flop/paginate";
-	private final static String LAST_SINCE_METHOD = "/last/since";
+	private final static String TOP_DESC_METHOD = "/top/paginate/";
+	private final static String FLOP_DESC_METHOD = "/flop/paginate/";
+	private final static String LAST_SINCE_METHOD = "/last/since/";
 	private Gson gson;
 	
 	private ISTISNServices() {
@@ -68,10 +68,9 @@ public class ISTISNServices {
 
 	public List<Quote> getFromDateQuotes(Date date) {
 		String response = this.webService.webGet(LAST_SINCE_METHOD+date.getTime(), null);
+		if (response.startsWith("[{"))
+			return Arrays.asList(this.gson.fromJson(response, Quote[].class));
 		
-		Type collectionType = new TypeToken<Quote>(){}.getType();
-		List<Quote> quotes = this.gson.fromJson(response, collectionType);
-		
-		return quotes;
+		return null;
 	}
 }

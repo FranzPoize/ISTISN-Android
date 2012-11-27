@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.franzp.istisn.fragment.QuotesFragment.SORT;
 import com.franzp.istisn.model.Quote;
 
 public class DBHelper {
@@ -22,8 +23,23 @@ public class DBHelper {
 		db.close();
 	}
 	
-	public Cursor getQuotes(){
-		String sql = "SELECT * FROM quote ORDER BY _id DESC";
+	public Cursor getQuotes(SORT order){
+		String sql = "SELECT * FROM quote ORDER BY";
+		switch (order) {
+		case FLOP:
+			sql+=" nbFlop";
+			break;
+		case TOP:
+			sql+=" nbTop";
+			break;
+		case TIME_DESC:
+			sql+=" _id";
+			break;
+
+		default:
+			break;
+		}
+		sql+=" DESC";
 		return db.rawQuery(sql, null);
 	}
 	

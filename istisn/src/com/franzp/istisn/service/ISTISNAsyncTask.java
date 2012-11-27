@@ -33,19 +33,19 @@ public class ISTISNAsyncTask {
 	}
 
 	
-	public AsyncTask<Integer, Void, Void> getPaginatedQuotesTask(Integer page) {
+	public AsyncTask<Integer, Void, Void> getPaginatedQuotesTask() {
 		return new PaginatedQuotesAsyncTask();
 	}
 	
-	public AsyncTask<Integer, Void, Void> getTopDescQuotesTask(Integer page) {
+	public AsyncTask<Integer, Void, Void> getTopDescQuotesTask() {
 		return new TopDescQuotesAsyncTask();
 	}
 	
-	public AsyncTask<Integer, Void, Void> getFlopDescQuotesTask(Integer page) {
+	public AsyncTask<Integer, Void, Void> getFlopDescQuotesTask() {
 		return new FlopDescQuotesAsyncTask();
 	}
 	
-	public AsyncTask<Date, Void, Void> getLastSincecQuotesTask(Date since) {
+	public AsyncTask<Date, Void, List<Quote>> getLastSincecQuotesTask() {
 		return new LastSinceQuotesAsyncTask();
 	}
 	
@@ -104,13 +104,21 @@ public class ISTISNAsyncTask {
 		}
 	}
 	
-	public class LastSinceQuotesAsyncTask extends AsyncTask<Date, Void, Void> {
+	public class LastSinceQuotesAsyncTask extends AsyncTask<Date, Void, List<Quote>> {
 
 		@Override
-		protected Void doInBackground(Date... params) {
-			ISTISNServices.getInstance().getFromDateQuotes(params[0]);
+		protected List<Quote> doInBackground(Date... params) {
 			
-			return null;
+			return ISTISNServices.getInstance().getFromDateQuotes(params[0]);
+		}
+		
+		@Override
+		protected void onPostExecute(List<Quote> result) {
+			if (result != null) {
+				for(Quote quote : result) {
+					helper.insertQuote(quote);
+				}
+			}
 		}
 	}
 

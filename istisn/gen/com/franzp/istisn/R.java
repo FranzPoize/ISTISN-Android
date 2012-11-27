@@ -346,39 +346,41 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int default_title_indicator_top_padding=0x7f09000c;
     }
     public static final class drawable {
-        public static final int ic_action_search=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int middle_finger=0x7f020002;
-        public static final int moustaches=0x7f020003;
-        public static final int not_bad=0x7f020004;
-        public static final int quotes_left=0x7f020005;
-        public static final int quotes_right=0x7f020006;
-        public static final int splashscreenfrench=0x7f020007;
-        public static final int vpi__tab_indicator=0x7f020008;
-        public static final int vpi__tab_selected_focused_holo=0x7f020009;
-        public static final int vpi__tab_selected_holo=0x7f02000a;
-        public static final int vpi__tab_selected_pressed_holo=0x7f02000b;
-        public static final int vpi__tab_unselected_focused_holo=0x7f02000c;
-        public static final int vpi__tab_unselected_holo=0x7f02000d;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f02000e;
+        public static final int ic_action_example=0x7f020000;
+        public static final int ic_action_search=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int middle_finger=0x7f020003;
+        public static final int moustaches=0x7f020004;
+        public static final int not_bad=0x7f020005;
+        public static final int quotes_left=0x7f020006;
+        public static final int quotes_right=0x7f020007;
+        public static final int splashscreenfrench=0x7f020008;
+        public static final int vpi__tab_indicator=0x7f020009;
+        public static final int vpi__tab_selected_focused_holo=0x7f02000a;
+        public static final int vpi__tab_selected_holo=0x7f02000b;
+        public static final int vpi__tab_selected_pressed_holo=0x7f02000c;
+        public static final int vpi__tab_unselected_focused_holo=0x7f02000d;
+        public static final int vpi__tab_unselected_holo=0x7f02000e;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f02000f;
     }
     public static final class id {
-        public static final int Flop=0x7f05000e;
-        public static final int Top=0x7f05000d;
+        public static final int Flop=0x7f05000f;
+        public static final int Top=0x7f05000e;
         public static final int about_text=0x7f050005;
         public static final int actualActivity=0x7f050007;
-        public static final int author=0x7f05000c;
+        public static final int author=0x7f05000d;
         public static final int bottom=0x7f050003;
-        public static final int indicator=0x7f050008;
-        public static final int menu_settings=0x7f05000f;
-        public static final int message=0x7f05000b;
+        public static final int indicator=0x7f050009;
+        public static final int menu_settings=0x7f050010;
+        public static final int message=0x7f05000c;
         public static final int none=0x7f050000;
-        public static final int quote_list=0x7f05000a;
+        public static final int quote_list=0x7f05000b;
+        public static final int refresh=0x7f050008;
         public static final int splashLayout=0x7f050006;
         public static final int top=0x7f050004;
         public static final int triangle=0x7f050001;
         public static final int underline=0x7f050002;
-        public static final int viewpager=0x7f050009;
+        public static final int viewpager=0x7f05000a;
     }
     public static final class integer {
         public static final int default_circle_indicator_orientation=0x7f080000;
