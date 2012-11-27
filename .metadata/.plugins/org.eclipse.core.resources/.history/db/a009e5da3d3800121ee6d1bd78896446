@@ -1,0 +1,19 @@
+package com.franzp.istisn.view;
+
+import com.franzp.istisn.model.Quote;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.LinearLayout;
+
+public class QuoteView extends LinearLayout {
+
+	public QuoteView(Context context, AttributeSet attrs, int defStyle,Quote quote) {
+		super(context, attrs, defStyle);
+		
+		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
+		View compView = inflater.inflate(R.layout.computer_token, this);
+	}
+
+}

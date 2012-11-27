@@ -1,0 +1,72 @@
+package com.franzp.istisn;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.franzp.istisn.R;
+
+import android.os.Bundle;
+
+public class Istisn extends SherlockFragmentActivity {
+
+
+    private ActionBar actionBar;
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_istisn);
+        
+        actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setLogo(R.drawable.abs_title);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+    }
+    
+    private static class TLPagerAdapter extends FragmentPagerAdapter {  
+		private List<Fragment> pages;
+		
+		private static String NEWS_SUBTITLE = "NEWS";
+		private static String FORUMS_SUBTITLE = "FORUMS";
+		private static String STREAMS_SUBTITLE = "STREAMS";
+		private static String CALENDAR_SUBTITLE = "CALENDAR";
+		private static String BARCRAFTS_SUBTITLE = "BARCRAFTS";
+		
+		private static String[] titles = new String[]
+	    {
+			NEWS_SUBTITLE,
+			FORUMS_SUBTITLE,
+			STREAMS_SUBTITLE,
+			CALENDAR_SUBTITLE,
+			BARCRAFTS_SUBTITLE,
+	    };
+		
+        public TLPagerAdapter(FragmentManager fm) {  
+             super(fm);
+             pages = new ArrayList<Fragment>();
+             pages.add(new NewsFragment());
+             pages.add(new NewsFragment());
+             pages.add(new NewsFragment());
+             pages.add(new NewsFragment());
+             pages.add(new NewsFragment());
+        }  
+
+        @Override  
+        public Fragment getItem(int index) {  
+
+             return pages.get(index);
+        }  
+        
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles[position % titles.length];
+        }
+
+        @Override  
+        public int getCount() {  
+
+             return titles.length;  
+        }
+   }
+
+}

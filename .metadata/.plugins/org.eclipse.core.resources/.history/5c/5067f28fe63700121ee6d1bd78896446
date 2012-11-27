@@ -1,0 +1,52 @@
+package com.franzp.istisn.service;
+
+import java.util.Date;
+import java.util.List;
+
+import com.franzp.istisn.model.Quote;
+
+public class ISTISNServices {
+	private static ISTISNServices instance;
+	private WebService webService;
+	private String ALL_METHOD = '/last/all';
+	private String ANTI_TIME_METHOD_PAGINATED = '/last/paginate';
+	private String TOP_DES_METHOD = '/last/all';
+	private String ALL_METHOD = '/last/all';
+	private String ALL_METHOD = '/last/all';
+	
+	private ISTISNServices() {
+		this.webService = new WebService("http://www.isaythatisaynothing.com/api/messages");
+	}
+	
+	public static ISTISNServices getInstance() {
+		if (instance == null) {
+			instance = new ISTISNServices();
+		}
+		
+		return instance;
+	}
+	
+	public List<Quote> getAllQuotes() {
+		this.webService = 
+	}
+	
+	public List<Quote> getAntiTimePaginatedQuotes(Integer page) {
+
+		WebService webService = new WebService("http://www.isaythatisaynothing.com/api/messages/last/all");
+	}
+
+	public List<Quote> getTopDescQuotes(Integer page) {
+
+		WebService webService = new WebService("http://www.isaythatisaynothing.com/api/messages/last/all");
+	}
+
+	public List<Quote> getFlopDescQuotes(Integer page) {
+
+		WebService webService = new WebService("http://www.isaythatisaynothing.com/api/messages/last/all");
+	}
+
+	public List<Quote> getFromDateQuotes(Date date) {
+
+		WebService webService = new WebService("http://www.isaythatisaynothing.com/api/messages/last/all");
+	}
+}

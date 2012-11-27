@@ -1,0 +1,16 @@
+package com.franzp.istisn.service;
+
+public class ISTISNAsyncTask {
+
+private static WMPServices instance;
+	
+	private WMPServices() {}
+	
+	public static WMPServices getInstance() {
+		if (instance == null) {
+			instance = new WMPServices();
+		}
+		
+		return instance;
+	}
+}

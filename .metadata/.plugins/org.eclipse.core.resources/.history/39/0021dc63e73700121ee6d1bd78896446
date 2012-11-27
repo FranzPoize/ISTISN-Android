@@ -1,0 +1,65 @@
+package com.franzp.istisn.service;
+
+import java.util.Date;
+import java.util.List;
+
+import com.franzp.istisn.model.Quote;
+import com.google.gson.Gson;
+
+public class ISTISNServices {
+	private static ISTISNServices instance;
+	private WebService webService;
+	private final static String ALL_METHOD = "/last/all/";
+	private final static String ANTI_TIME_METHOD_PAGINATED = "/last/paginate/";
+	private final static String TOP_DESC_METHOD = "/top/paginate";
+	private final static String FLOP_DESC_METHOD = "/flop/paginate";
+	private final static String LAST_SINCE_METHOD = "/last/since";
+	private Gson gson;
+	
+	private ISTISNServices() {
+		this.webService = new WebService("http://www.isaythatisaynothing.com/api/messages");
+	}
+	
+	public static ISTISNServices getInstance() {
+		if (instance == null) {
+			instance = new ISTISNServices();
+		}
+		
+		return instance;
+	}
+	
+	public List<Quote> getAllQuotes() {
+		String response = this.webService.webGet(ALL_METHOD, null);
+		
+		try
+		{
+           //Parse Response into our object
+			Type collectionType = new TypeToken<List<alerts>>(){}.getType();
+			List<Quote> alrt = new Gson().fromJson(response, collectionType);
+        
+		}
+		catch(Exception e)
+		{
+			Log.d("Error: ", e.getMessage());
+		}
+	}
+	
+	public List<Quote> getAntiTimePaginatedQuotes(Integer page) {
+
+	}
+
+	public List<Quote> getTopDescQuotes(Integer page) {
+
+		WebService webService = new WebService("http://www.isaythatisaynothing.com/api/messages/last/all");
+	}
+
+	public List<Quote> getFlopDescQuotes(Integer page) {
+
+		WebService webService = new WebService("http://www.isaythatisaynothing.com/api/messages/last/all");
+	}
+
+	public List<Quote> getFromDateQuotes(Date date) {
+
+		WebService webService = new WebService("http://www.isaythatisaynothing.com/api/messages/last/all");
+	}
+}

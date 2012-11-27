@@ -1,0 +1,66 @@
+package com.franzp.istisn.utils;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import com.franzp.istisn.model.Quote;
+
+public class DBHelper {
+	
+	private SQLiteDatabase db;
+	private OpenHelper helper;
+	
+	public DBHelper(Context context) {
+		helper = new OpenHelper(context);
+		db = helper.getWritableDatabase();
+	}
+	
+	public void close() {
+		helper.close();
+		db.close();
+	}
+	
+	public Cursor getQuotes(){
+		String sql = "SELECT * FROM quote";
+		return db.rawQuery(sql, null);
+	}
+	
+	public void insertQuote(Quote quote) {
+		String sql = String.format("INSERT INTO computers_1 VALUES (\"%s\",\"%s\", \"%s\", \"%s\", \"%s\",\"%s\")", quote.getId(),
+				quote.getAuthor()(),quote.getMessage(),quote.getNbFlop(),quote.getNbTop(),quote.getCreationdate());
+		db.execSQL(sql);
+		
+		sql = String.format("SELECT MAX(_id) as maxId FROM computers_1");
+		Cursor cursor = db.rawQuery(sql, null);
+		
+		cursor.moveToFirst();
+		if (!cursor.isAfterLast()) {
+			computer.setId(cursor.getInt(cursor.getColumnIndex("maxId")));
+			cursor.moveToNext();
+		}
+	}
+	
+	private class OpenHelper extends SQLiteOpenHelper {
+		private static final String DATABASE_NAME = "istisn";
+		private static final int DATABASE_VERSION = 1;
+
+		private static final String CREATE_QUOTE_TABLE = "CREATE TABLE computers_1 (_id INTEGER PRIMARY KEY, author TEXT, message TEXT,nbFlop INTEGER,nbTop INTEGER, creationdate DATE);";
+
+		public OpenHelper(Context context) {
+			super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		}
+
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			db.execSQL(CREATE_COMPUTER_TABLE);
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase arg0, int oldVersion, int newVersion) {			
+		}
+	}
+
+}
+

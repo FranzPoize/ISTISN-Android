@@ -1,0 +1,7 @@
+package com.franzp.istisn.view;
+
+import android.widget.LinearLayout;
+
+public class QuoteView extends LinearLayout {
+
+}

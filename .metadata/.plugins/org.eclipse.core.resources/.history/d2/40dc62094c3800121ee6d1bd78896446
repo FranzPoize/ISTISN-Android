@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">istisn</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_istisn">Istisn</string>
+    <string name="about_start">I say that, I say nothing…" is a collection of french idioms literally translated to english.\n\nThis app is developped by @FranzP.\n\nIt uses the http://http://isaythatisaynothing.com/ API.</string>
+
+</resources>

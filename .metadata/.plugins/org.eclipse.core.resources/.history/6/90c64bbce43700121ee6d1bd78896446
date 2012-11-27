@@ -1,0 +1,41 @@
+package com.franzp.istisn.service;
+
+import java.util.Date;
+import java.util.List;
+
+import com.franzp.istisn.model.Quote;
+
+public class ISTISNAsyncTask {
+
+	private static ISTISNAsyncTask instance;
+	
+	private ISTISNAsyncTask() {}
+	
+	public static ISTISNAsyncTask getInstance() {
+		if (instance == null) {
+			instance = new ISTISNAsyncTask();
+		}
+		
+		return instance;
+	}
+	
+	public List<Quote> getAllQuotes() {
+		
+	}
+	
+	public List<Quote> getAntiTimePaginatedQuotes(Integer page) {
+			
+	}
+
+	public List<Quote> getTopDescQuotes(Integer page) {
+		
+	}
+
+	public List<Quote> getFlopDescQuotes(Integer page) {
+		
+	}
+
+	public List<Quote> getFromDateQuotes(Date date) {
+		
+	}
+}

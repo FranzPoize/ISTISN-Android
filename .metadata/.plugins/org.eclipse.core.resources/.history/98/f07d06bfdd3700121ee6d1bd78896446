@@ -1,0 +1,15 @@
+package com.example.istisn;
+
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
+import android.os.Bundle;
+
+public class Istisn extends SherlockFragmentActivity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_istisn);
+    }
+
+}

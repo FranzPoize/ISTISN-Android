@@ -1,0 +1,65 @@
+package com.franzp.istisn.model;
+
+public class Quote {
+
+	Integer id;
+	
+	String message;
+	
+	String author;
+	
+	String creationDate;
+	
+	Integer top;
+	
+	Integer flop;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(String creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public Integer getTop() {
+		return top;
+	}
+
+	public void setTop(Integer top) {
+		this.top = top;
+	}
+
+	public Integer getFlop() {
+		return flop;
+	}
+
+	public void setFlop(Integer flop) {
+		this.flop = flop;
+	}
+	
+}

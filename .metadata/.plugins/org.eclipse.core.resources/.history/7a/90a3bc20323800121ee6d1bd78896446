@@ -1,0 +1,21 @@
+package com.franzp.istisn.view;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.LinearLayout;
+
+public class splashLinearLayout extends LinearLayout {
+
+    private Context myContext;
+
+    public splashLinearLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        myContext = context;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+    {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+}

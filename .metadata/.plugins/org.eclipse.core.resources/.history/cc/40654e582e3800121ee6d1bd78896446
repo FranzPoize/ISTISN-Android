@@ -1,0 +1,11 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="Theme.VPI" parent=Theme.NoTitleBar.Fullscreen">
+       <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
+    </style>
+     
+    <!-- More customizations for ABS -->
+     <style name="TitleText" >
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">17dip</item>
+    </style>
+</resources>

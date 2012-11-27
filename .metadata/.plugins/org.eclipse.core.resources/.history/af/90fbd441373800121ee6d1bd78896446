@@ -1,0 +1,81 @@
+package com.franzp.istisn.utils;
+
+public class DBHelper {
+	
+	private SQLiteDatabase db;
+	private OpenHelper helper;
+	
+	public DBHelper(Context context) {
+		helper = new OpenHelper(context);
+		db = helper.getWritableDatabase();
+	}
+	
+	public void close() {
+		helper.close();
+		db.close();
+	}
+	
+	public Cursor getQuotes(){
+		String sql = "SELECT * FROM quote";
+		return db.rawQuery(sql, null);
+	}
+	
+	public void insertComputer(String name, String ip,String mac,String port){
+		String sql = String.format("INSERT INTO computers_1 VALUES (NULL,\"%s\", \"%s\", \"%s\", \"%s\",\"%s\")", name, ip,mac,port,"");
+		db.execSQL(sql);
+		
+	}
+	
+	public void insertComputer(Computer computer) {
+		String sql = String.format("INSERT INTO computers_1 VALUES (NULL,\"%s\", \"%s\", \"%s\", \"%s\",\"%s\")", computer.getName(),
+				computer.getIp(),computer.getMac(),computer.getPort(),computer.getPassword());
+		db.execSQL(sql);
+		
+		sql = String.format("SELECT MAX(_id) as maxId FROM computers_1");
+		Cursor cursor = db.rawQuery(sql, null);
+		
+		cursor.moveToFirst();
+		if (!cursor.isAfterLast()) {
+			computer.setId(cursor.getInt(cursor.getColumnIndex("maxId")));
+			cursor.moveToNext();
+		}
+	}
+	
+	public void updateComputer(Computer computer) {
+		String sql = String.format("UPDATE computers_1 SET name=\"%s\", ip=\"%s\", mac=\"%s\", port=\"%s\", password=\"%s\" WHERE _id=%d", computer.getName(),
+				computer.getIp(),computer.getMac(),computer.getPort(),computer.getPassword(),computer.getId());
+		db.execSQL(sql);
+	}
+	
+	public void deleteComputers(String name){
+		String sql = String.format("DELETE FROM computers_1 WHERE name = \"%s\"", name);
+		db.execSQL(sql);
+	}
+	
+	public void deleteComputers(Computer computer) {
+		String sql = String.format("DELETE FROM computers_1 WHERE name = \"%s\"", computer.getName());
+		db.execSQL(sql);
+	}
+	
+	private class OpenHelper extends SQLiteOpenHelper {
+		private static final String DATABASE_NAME = "wakemypc";
+		private static final int DATABASE_VERSION = 1;
+
+		private static final String CREATE_COMPUTER_TABLE = "CREATE TABLE computers_1 (_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, ip TEXT,mac TEXT,port TEXT, password TEXT);";
+
+		public OpenHelper(Context context) {
+			super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		}
+
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			db.execSQL(CREATE_COMPUTER_TABLE);
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase arg0, int oldVersion, int newVersion) {			
+		}
+	}
+
+}
+

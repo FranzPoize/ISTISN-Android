@@ -1,0 +1,7 @@
+package com.franzp.istisn.fragment;
+
+import com.actionbarsherlock.app.SherlockFragment;
+
+public class QuotesFragment extends SherlockFragment {
+
+}

@@ -1,0 +1,40 @@
+package com.franzp.istisn.service;
+
+import java.util.Date;
+import java.util.List;
+
+import com.franzp.istisn.model.Quote;
+
+public class ISTISNAsyncTask {
+
+	private static WMPAsyncTasks instance = null;
+
+	private WMPAsyncTasks() {
+	}
+	
+	public final static WMPAsyncTasks getInstance() {
+		if (WMPAsyncTasks.instance == null) {
+			WMPAsyncTasks.instance = new WMPAsyncTasks();
+		}
+		
+		return WMPAsyncTasks.instance;
+	}
+	
+	public AsyncTask<Computer, Void, Void> getWakeOnLanTask() {
+		return new SendWakeOnLanAsync();
+	}
+
+	
+	public AsyncTask<Computer, Void, Computer.ComputerStatus> getStatusTask() {
+		return new SendStatusUpdateAsync();
+	}
+	
+	public AsyncTask<Computer, Void, PasswordStatus> getCheckPasswordTask() {
+		return new SendCheckPasswordAsync();
+	}
+	
+	public AsyncTask<Computer, Void, Boolean> getSendShutdownTask() {
+		return new sendShutdownAsync();
+	}
+
+}

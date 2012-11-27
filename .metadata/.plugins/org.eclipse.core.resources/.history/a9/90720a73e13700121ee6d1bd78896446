@@ -1,0 +1,16 @@
+package com.franzp.istisn.service;
+
+public class ISTISNAsyncTask {
+
+	private static ISTISNAsyncTask instance;
+	
+	private ISTISNAsyncTask() {}
+	
+	public static ISTISNAsyncTask getInstance() {
+		if (instance == null) {
+			instance = new ISTISNAsyncTask();
+		}
+		
+		return instance;
+	}
+}

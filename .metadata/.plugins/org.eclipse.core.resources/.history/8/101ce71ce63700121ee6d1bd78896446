@@ -1,0 +1,40 @@
+package com.franzp.istisn.service;
+
+import java.util.Date;
+import java.util.List;
+
+import com.franzp.istisn.model.Quote;
+
+public class ISTISNServices {
+	private static ISTISNServices instance;
+	
+	private ISTISNServices() {}
+	
+	public static ISTISNServices getInstance() {
+		if (instance == null) {
+			instance = new ISTISNServices();
+		}
+		
+		return instance;
+	}
+	
+	public List<Quote> getAllQuotes() {
+		WebService webService = new WebService("http://www.isaythatisaynothing.com/api/messages/last/all")
+	}
+	
+	public List<Quote> getAntiTimePaginatedQuotes(Integer page) {
+			
+	}
+
+	public List<Quote> getTopDescQuotes(Integer page) {
+		
+	}
+
+	public List<Quote> getFlopDescQuotes(Integer page) {
+		
+	}
+
+	public List<Quote> getFromDateQuotes(Date date) {
+		
+	}
+}

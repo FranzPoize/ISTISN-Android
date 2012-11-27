@@ -1,0 +1,17 @@
+package com.franzp.istisn.view;
+
+public class splashLinearLayout {
+
+    private Context myContext;
+
+    public CustomLinearLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        myContext = context;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+    {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec+((int)myContext.getResources().getDimension(R.dimen.quickplay_offset)));
+    }
+}

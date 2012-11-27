@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/splash"
+    >
+    <ImageView 
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:layout_alignParentLeft="true"
+    	android:src="@drawable/splashscreenfrench"/>
+    <LinearLayout 
+	    android:orientation="horizontal"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:id="@+id/splashLayout"
+	    android:alpha="0.0">
+		<LinearLayout 
+		    android:orientation="vertical"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:background="@color/black"
+		    android:id="@+id/actualActivity" >
+			<com.viewpagerindicator.TabPageIndicator
+		        android:id="@+id/indicator"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"/>
+		    <android.support.v4.view.ViewPager
+		        android:id="@+id/viewpager"
+		        android:layout_weight="1"
+		        android:layout_width="match_parent"
+		        android:layout_height="0dp"
+		        />
+		</LinearLayout>
+	</LinearLayout>
+</RelativeLayout>

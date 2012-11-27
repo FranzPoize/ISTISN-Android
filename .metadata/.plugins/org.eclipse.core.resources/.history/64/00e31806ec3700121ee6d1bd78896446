@@ -1,0 +1,19 @@
+package com.franzp.istisn.model;
+
+public class Quote {
+
+	private Integer id;
+	
+	private String message;
+	
+	private String author;
+	
+	private String creationdate;
+	
+	private Integer nbTop;
+	
+	private Integer nbFlop;
+
+
+	
+}

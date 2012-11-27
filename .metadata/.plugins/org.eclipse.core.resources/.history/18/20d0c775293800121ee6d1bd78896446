@@ -1,0 +1,94 @@
+package com.franzp.istisn;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.franzp.istisn.R;
+import com.franzp.istisn.fragment.QuotesFragment;
+import com.viewpagerindicator.TabPageIndicator;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.animation.Animation.AnimationListener;
+
+public class Istisn extends SherlockFragmentActivity implements AnimationListener {
+
+    private ActionBar actionBar;
+    private ISTISNPagerAdapter pageAdapter;
+    private ViewPager viewPager;
+    
+    private Handler splashHandler = new Handler() {
+    	@Override
+    	public void handleMessage(Message msg) {
+    		switch (msg.what) {
+    		case STOPSPLASH:
+    			break;
+    		}
+    		super.handleMessage(msg);
+    	}
+    }
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_istisn);
+        
+        actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setTitle(getResources().getString(R.string.app_name));
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        
+        TabPageIndicator indicator =
+		        (TabPageIndicator)findViewById( R.id.indicator);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        pageAdapter = new ISTISNPagerAdapter(getSupportFragmentManager());
+		viewPager.setAdapter(pageAdapter);
+		indicator.setViewPager(viewPager);
+		viewPager.setCurrentItem(0, false);
+    }
+    
+    private static class ISTISNPagerAdapter extends FragmentPagerAdapter {  
+		private List<Fragment> pages;
+		
+		private static String ALL_SUBTITLE = "QUOTES";
+		private static String ABOUT_SUBTITLE = "ABOUT";
+		
+		private static String[] titles = new String[]
+	    {
+			ALL_SUBTITLE,
+			ABOUT_SUBTITLE,
+	    };
+		
+        public ISTISNPagerAdapter(FragmentManager fm) {  
+             super(fm);
+             pages = new ArrayList<Fragment>();
+             pages.add(new QuotesFragment());
+             pages.add(new QuotesFragment());
+        }  
+
+        @Override  
+        public Fragment getItem(int index) {  
+
+             return pages.get(index);
+        }  
+        
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles[position % titles.length];
+        }
+
+        @Override  
+        public int getCount() {  
+
+             return titles.length;  
+        }
+   }
+
+}

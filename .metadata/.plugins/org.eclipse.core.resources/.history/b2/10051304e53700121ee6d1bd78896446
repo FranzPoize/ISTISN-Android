@@ -1,0 +1,38 @@
+package com.franzp.istisn.service;
+
+import java.util.Date;
+import java.util.List;
+
+import android.os.AsyncTask;
+
+import com.franzp.istisn.model.Quote;
+
+public class ISTISNAsyncTask {
+
+	private static ISTISNAsyncTask instance = null;
+
+	private ISTISNAsyncTask() {
+	}
+	
+	public final static ISTISNAsyncTask getInstance() {
+		if (ISTISNAsyncTask.instance == null) {
+			ISTISNAsyncTask.instance = new ISTISNAsyncTask();
+		}
+		
+		return ISTISNAsyncTask.instance;
+	}
+	
+	public AsyncTask<Void, Void, Void> getAllQuotes() {
+	}
+
+	
+	public AsyncTask<Void, Void, Void> getAntiTimePaginatedQuotes() {
+	}
+	
+	public AsyncTask<Void, Void, Void> getTopDescQuotes() {
+	}
+	
+	public AsyncTask<Void, Void, Void> getFlopDescQuotes() {
+	}
+
+}
