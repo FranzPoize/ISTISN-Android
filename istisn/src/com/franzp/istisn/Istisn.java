@@ -12,22 +12,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.Window;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.franzp.istisn.fragment.AboutFragment;
 import com.franzp.istisn.fragment.QuotesFragment;
-import com.franzp.istisn.service.ISTISNAsyncTask;
 import com.franzp.istisn.utils.DBHelper;
 import com.viewpagerindicator.TabPageIndicator;
 
 public class Istisn extends FragmentActivity implements AnimationListener {
 
-    private ActionBar actionBar;
     private ISTISNPagerAdapter pageAdapter;
     private ViewPager viewPager;
     private static LinearLayout myLayout;
@@ -43,6 +40,7 @@ public class Istisn extends FragmentActivity implements AnimationListener {
     		case STOPSPLASH:
     			Animation anim = AnimationUtils.loadAnimation(context, R.anim.splash_animation);
     	        anim.setAnimationListener(context);
+    	        myLayout.setVisibility(View.VISIBLE);
     	        myLayout.startAnimation(anim);
     			break;
     		}
@@ -59,9 +57,6 @@ public class Istisn extends FragmentActivity implements AnimationListener {
     @Override
     public void onAnimationStart(Animation animation)
     {
-    	myLayout.layout(0, 0, 
-    			myLayout.getWidth()*2, myLayout.getHeight());
-    	myLayout.setAlpha((float)1.0);
     }
     
     @Override
@@ -71,6 +66,7 @@ public class Istisn extends FragmentActivity implements AnimationListener {
         context = this;
         setContentView(R.layout.activity_istisn);
         myLayout = (LinearLayout)findViewById(R.id.splashLayout);
+    	
         
         helper = new DBHelper(this);
         
@@ -87,7 +83,18 @@ public class Istisn extends FragmentActivity implements AnimationListener {
 		splashHandler.sendMessageDelayed(msg, SPLASHTIME);
     }
     
-    private static class ISTISNPagerAdapter extends FragmentPagerAdapter {  
+    
+    
+    @Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		myLayout.layout(myLayout.getWidth(), 0, 
+    			myLayout.getWidth()*2, myLayout.getHeight());
+	}
+
+
+
+	private static class ISTISNPagerAdapter extends FragmentPagerAdapter {  
 		private List<Fragment> pages;
 		
 		private static String ALL_SUBTITLE = "QUOTES";

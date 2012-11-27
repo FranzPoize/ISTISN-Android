@@ -19,7 +19,7 @@ public class QuoteView extends LinearLayout {
 	private TextView flop;
 
 	public QuoteView(Context context, AttributeSet attrs, int defStyle,Quote quote) {
-		super(context, attrs, defStyle);
+		super(context);
 		
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		

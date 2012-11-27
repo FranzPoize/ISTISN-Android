@@ -1,5 +1,7 @@
 package com.franzp.istisn.fragment;
 
+import com.franzp.istisn.R;
+
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.actionbarsherlock.R;
 
 public class AboutFragment extends Fragment {
 

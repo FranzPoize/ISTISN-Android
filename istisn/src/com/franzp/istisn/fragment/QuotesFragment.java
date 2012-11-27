@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.actionbarsherlock.R;
 import com.franzp.istisn.Istisn;
+import com.franzp.istisn.R;
 import com.franzp.istisn.model.Quote;
 import com.franzp.istisn.service.ISTISNAsyncTask;
 import com.franzp.istisn.view.QuoteView;
