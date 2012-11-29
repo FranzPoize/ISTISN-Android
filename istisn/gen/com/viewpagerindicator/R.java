@@ -364,16 +364,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int vpi__tab_unselected_pressed_holo=0x7f02000f;
     }
     public static final class id {
-        public static final int Flop=0x7f05000f;
-        public static final int Top=0x7f05000e;
+        public static final int Flop=0x7f050012;
+        public static final int Top=0x7f050010;
         public static final int about_text=0x7f050005;
         public static final int actualActivity=0x7f050007;
-        public static final int author=0x7f05000d;
+        public static final int author=0x7f05000e;
         public static final int bottom=0x7f050003;
+        public static final int date_quote=0x7f05000f;
         public static final int indicator=0x7f050009;
-        public static final int menu_settings=0x7f050010;
-        public static final int message=0x7f05000c;
+        public static final int menu_settings=0x7f050013;
+        public static final int message=0x7f05000d;
         public static final int none=0x7f050000;
+        public static final int not_bad_img=0x7f050011;
+        public static final int ouvert_quote=0x7f05000c;
         public static final int quote_list=0x7f05000b;
         public static final int refresh=0x7f050008;
         public static final int splashLayout=0x7f050006;

@@ -1,5 +1,7 @@
 package com.franzp.istisn.view;
 
+import java.sql.Date;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
@@ -17,6 +19,7 @@ public class QuoteView extends LinearLayout {
 	private TextView author;
 	private TextView top;
 	private TextView flop;
+	private TextView creationdate;
 
 	public QuoteView(Context context, AttributeSet attrs, int defStyle,Quote quote) {
 		super(context);
@@ -31,6 +34,7 @@ public class QuoteView extends LinearLayout {
 		author = (TextView)compView.findViewById(R.id.author);
 		top = (TextView)compView.findViewById(R.id.Top);
 		flop = (TextView)compView.findViewById(R.id.Flop);
+		creationdate = (TextView)compView.findViewById(R.id.date_quote);
 		
 		message.setTypeface(typface);
 		author.setTypeface(typface);
@@ -43,6 +47,7 @@ public class QuoteView extends LinearLayout {
 		author.setText(quote.getAuthor());
 		top.setText(quote.getNbTop().toString());
 		flop.setText(quote.getNbFlop().toString());
+		creationdate.setText(quote.getCreationdate());
 	}
 
 }

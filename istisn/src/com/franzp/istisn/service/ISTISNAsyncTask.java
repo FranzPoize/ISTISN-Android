@@ -1,11 +1,15 @@
 package com.franzp.istisn.service;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import android.database.Cursor;
 import android.os.AsyncTask;
+import android.support.v4.widget.CursorAdapter;
 
+import com.franzp.istisn.fragment.BaseFragment.SORT;
 import com.franzp.istisn.model.Quote;
 import com.franzp.istisn.utils.DBHelper;
 
@@ -28,32 +32,47 @@ public class ISTISNAsyncTask {
 		return ISTISNAsyncTask.instance;
 	}
 	
-	public AsyncTask<Void, Void, List<Quote>> getAllQuotesTask() {
+	public BaseAsyncTask<Void, Void, List<Quote>> getAllQuotesTask() {
 		return new AllQuotesAsyncTask();
 	}
 
 	
-	public AsyncTask<Integer, Void, Void> getPaginatedQuotesTask() {
+	public BaseAsyncTask<Integer, Void, Void> getPaginatedQuotesTask() {
 		return new PaginatedQuotesAsyncTask();
 	}
 	
-	public AsyncTask<Integer, Void, Void> getTopDescQuotesTask() {
+	public BaseAsyncTask<Integer, Void, Void> getTopDescQuotesTask() {
 		return new TopDescQuotesAsyncTask();
 	}
 	
-	public AsyncTask<Integer, Void, Void> getFlopDescQuotesTask() {
+	public BaseAsyncTask<Integer, Void, Void> getFlopDescQuotesTask() {
 		return new FlopDescQuotesAsyncTask();
 	}
 	
-	public AsyncTask<Date, Void, List<Quote>> getLastSincecQuotesTask() {
+	public BaseAsyncTask<Date, Void, List<Quote>> getLastSincecQuotesTask() {
 		return new LastSinceQuotesAsyncTask();
+	}
+	
+	public abstract class BaseAsyncTask<Params,Progress,Result> extends AsyncTask<Params, Progress, Result> {
+		private Map<SORT, CursorAdapter> adapters = new HashMap<SORT, CursorAdapter>();
+
+		public Map<SORT, CursorAdapter> getAdapters() {
+			return adapters;
+		}
+
+		public void setAdapters(Map<SORT, CursorAdapter> adapters) {
+			this.adapters = adapters;
+		}
+		
+		public void addAdapter(SORT sortOrder,CursorAdapter adapter) {
+			this.adapters.put(sortOrder, adapter);
+		}
 	}
 	
 	
 	
-	public class AllQuotesAsyncTask extends AsyncTask<Void, Void, List<Quote>> {
-
-		List<Quote> quotes = new ArrayList<Quote>();
+	public class AllQuotesAsyncTask extends BaseAsyncTask<Void, Void, List<Quote>> {
+		
 		@Override
 		protected List<Quote> doInBackground(Void... params) {
 			return ISTISNServices.getInstance().getAllQuotes();
@@ -65,10 +84,16 @@ public class ISTISNAsyncTask {
 				helper.insertQuote(quote);
 			}
 			
+			for (SORT order : getAdapters().keySet()) {
+				CursorAdapter adapter = getAdapters().get(order);
+				Cursor cursor = helper.getQuotes(order);
+				adapter.changeCursor(cursor);
+				adapter.notifyDataSetChanged();
+			}
 		}
 	}
 	
-	public class TopDescQuotesAsyncTask extends AsyncTask<Integer, Void, Void> {
+	public class TopDescQuotesAsyncTask extends BaseAsyncTask<Integer, Void, Void> {
 
 		@Override
 		protected Void doInBackground(Integer... params) {
@@ -84,7 +109,7 @@ public class ISTISNAsyncTask {
 		}
 	}
 	
-	public class FlopDescQuotesAsyncTask extends AsyncTask<Integer, Void, Void> {
+	public class FlopDescQuotesAsyncTask extends BaseAsyncTask<Integer, Void, Void> {
 
 		@Override
 		protected Void doInBackground(Integer... params) {
@@ -94,7 +119,7 @@ public class ISTISNAsyncTask {
 		}
 	}
 	
-	public class PaginatedQuotesAsyncTask extends AsyncTask<Integer, Void, Void> {
+	public class PaginatedQuotesAsyncTask extends BaseAsyncTask<Integer, Void, Void> {
 
 		@Override
 		protected Void doInBackground(Integer... params) {
@@ -104,13 +129,12 @@ public class ISTISNAsyncTask {
 		}
 	}
 	
-	public class LastSinceQuotesAsyncTask extends AsyncTask<Date, Void, List<Quote>> {
+	public class LastSinceQuotesAsyncTask extends BaseAsyncTask<Date, Void, List<Quote>> {
 
 		@Override
 		protected List<Quote> doInBackground(Date... params) {
-			
 			return ISTISNServices.getInstance().getFromDateQuotes(params[0]);
-		}
+		}		
 		
 		@Override
 		protected void onPostExecute(List<Quote> result) {

@@ -4,31 +4,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="15dp" >
-    <LinearLayout 
+    <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
     	android:layout_marginLeft="10dp"
-    	android:paddingRight="20dp">
+    	android:paddingRight="10dp"
+    	android:layout_marginBottom="10dp">
 	    <ImageView 
 	        android:layout_width="wrap_content"
    			android:layout_height="wrap_content"
-	    	android:src="@drawable/quotes_left"/>
+	    	android:src="@drawable/quotes_left"
+	    	android:layout_alignParentLeft="true"
+	    	android:id="@+id/ouvert_quote"/>
 	    <TextView 
 	        android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
 	    	android:id="@+id/message"
 	    	android:textSize="30sp"
 	    	android:layout_marginLeft="5dp"
-	    	android:layout_marginRight="5dp"
+	    	android:layout_marginRight="10dp"
+	    	android:layout_toRightOf="@id/ouvert_quote"
 	    	android:textColor="@color/black"/>
 	    <ImageView 
 	        android:layout_width="wrap_content"
    			android:layout_height="wrap_content"
 	    	android:src="@drawable/quotes_right"
-	    	android:translationY="10dp"/>
-    </LinearLayout >
-    <LinearLayout 
+	    	android:translationY="20dp"
+	    	android:layout_alignParentRight="true"/>
+    </RelativeLayout >
+    <RelativeLayout 
         android:layout_width="wrap_content"
    		android:layout_height="wrap_content"
    		android:orientation="horizontal"
@@ -39,6 +44,17 @@
 	    	android:layout_height="wrap_content"
 	    	android:id="@+id/author"
 	    	android:textSize="20sp"
+	    	android:layout_alignParentRight="true"
+	    	android:layout_marginRight="15dp"
+	    	android:textColor="@color/black"/>
+	    <TextView 
+	        android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:id="@+id/date_quote"
+	    	android:textSize="15sp"
+	    	android:textStyle="normal"
+	    	android:layout_below="@id/author"
+	    	android:layout_alignParentRight="true"
 	    	android:layout_marginRight="15dp"
 	    	android:textColor="@color/black"/>
 	    <TextView 
@@ -46,23 +62,28 @@
 	    	android:layout_height="wrap_content"
 	    	android:id="@+id/Top"
 	    	android:textSize="20sp"
+	    	android:layout_alignParentLeft="true"
 	    	android:textColor="@color/black"/>
 	    <ImageView 
 	        android:layout_width="45dp"
 	    	android:layout_height="30dp"
+	    	android:layout_toRightOf="@id/Top"
 	    	android:src="@drawable/not_bad"
+	    	android:id="@+id/not_bad_img"
 	    	android:layout_marginRight="15dp"/>
 	    <TextView 
 	        android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
 	    	android:id="@+id/Flop"
+	    	android:layout_toRightOf="@id/not_bad_img"
 	    	android:textSize="20sp"
 	    	android:textColor="@color/black"/>
 	    <ImageView 
 	        android:layout_width="45dp"
 	    	android:layout_height="30dp"
+	    	android:layout_toRightOf="@id/Flop"
 	    	android:src="@drawable/middle_finger"/>
-    </LinearLayout>
+    </RelativeLayout>
     <RelativeLayout 
         android:layout_width="match_parent"
 	    android:layout_height="wrap_content"

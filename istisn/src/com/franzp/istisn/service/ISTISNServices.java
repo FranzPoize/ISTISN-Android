@@ -67,7 +67,7 @@ public class ISTISNServices {
 	}
 
 	public List<Quote> getFromDateQuotes(Date date) {
-		String response = this.webService.webGet(LAST_SINCE_METHOD+date.getTime(), null);
+		String response = this.webService.webGet(LAST_SINCE_METHOD+(date.getTime()/1000+1), null);
 		if (response.startsWith("[{"))
 			return Arrays.asList(this.gson.fromJson(response, Quote[].class));
 		

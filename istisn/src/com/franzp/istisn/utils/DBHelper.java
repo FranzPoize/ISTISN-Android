@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.franzp.istisn.fragment.QuotesFragment.SORT;
+import com.franzp.istisn.fragment.BaseFragment.SORT;
 import com.franzp.istisn.model.Quote;
 
 public class DBHelper {
@@ -46,6 +46,11 @@ public class DBHelper {
 	public void insertQuote(Quote quote) {
 		String sql = String.format("INSERT INTO quote VALUES (\"%s\",\"%s\", \"%s\", \"%s\", \"%s\",\"%s\")", quote.getId(),
 				quote.getAuthor(),quote.getMessage(),quote.getNbFlop(),quote.getNbTop(),quote.getCreationdate());
+		db.execSQL(sql);
+	}
+	
+	public void deleteQuotes() {
+		String sql = "DELETE From quote";
 		db.execSQL(sql);
 	}
 	
